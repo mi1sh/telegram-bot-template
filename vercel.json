@@ -1,0 +1,10 @@
+{
+	"version": 2,
+	"builds": [
+		{ "src": "src/bot.ts", "use": "@vercel/node" }
+	],
+	"env": {
+		"BOT_TOKEN": "@bot_token",
+		"CHAT_ID": "@chat_id"
+	}
+}
