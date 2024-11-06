@@ -7,7 +7,7 @@ export const socialsCommand = (ctx: Context) => {
 	const env = process.env;
 
 	return ctx.reply(
-		'*Социальные сети администратора:*',{
+		'*Соц.сети администратора:*',{
 			parse_mode: 'MarkdownV2',
 		...Markup.inlineKeyboard([
 			[Markup.button.url('🔵 Telegram', `${env.TELEGRAM_LINK}`)],

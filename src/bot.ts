@@ -27,13 +27,25 @@ const commands = [
 ];
 
 const mainMenuKeyboard = () => {
+	console.log('show menu')
 	return Markup.keyboard([
 		[{ text: 'Показать меню 📔' }],
 	])
 		.resize()
 		.oneTime(false);
 }
-mainMenuKeyboard();
+
+bot.start(async (ctx) => {
+	await ctx.reply('Привет! 🖖', mainMenuKeyboard());
+	await startCommand(ctx);
+});
+
+bot.hears('Показать меню 📔', async (ctx) => {
+	await startCommand(ctx);
+	if (ctx.from) {
+		userStates[ctx.from.id] = undefined;
+	}
+});
 
 const registerCommandsAndActions = (bot: Telegraf<Context>) => {
 	commands.forEach(({ command, handler }) => {
@@ -56,13 +68,6 @@ bot.action('back', async (ctx) => {
 	await startCommand(ctx);
 });
 
-bot.hears('Показать меню', async (ctx: Context) => {
-	await startCommand(ctx);
-	if (ctx.from) {
-		userStates[ctx.from.id] = undefined;
-	}
-});
-
 bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 	if (!ctx.from) {
 		return;
@@ -72,7 +77,7 @@ bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 	if (userState === 'suggestion') {
 		try {
 			await ctx.forwardMessage(CHAT_ID);
-			await ctx.telegram.sendMessage(CHAT_ID, "Ты получил новое сообщение в предложку ⤴️", {reply_markup: {inline_keyboard: [[{text: 'Вернуться ↩️', callback_data: 'back'}]]}});
+			await ctx.telegram.sendMessage(CHAT_ID, "Ты получил новое сообщение в предложку ⤴️");
 			await ctx.reply('Ваше сообщение отправлено!');
 			if (ctx.from) {
 				userStates[ctx.from.id] = undefined;
@@ -85,5 +90,4 @@ bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 	}
 });
 
-bot.launch();
-console.log('Бот запущен');
+export default bot;
