@@ -90,4 +90,6 @@ bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 	}
 });
 
+bot.telegram.setWebhook('https://poplakat-bot.vercel.app/api/webhook');
+
 export default bot;
