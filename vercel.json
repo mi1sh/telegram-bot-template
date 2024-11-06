@@ -1,6 +1,6 @@
 {
 	"version": 2,
 	"builds": [
-		{ "src": "src/bot.ts", "use": "@vercel/node" }
+		{ "src": "api/webhook.ts", "use": "@vercel/node" }
 	]
 }

@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import bot from '../bot';
+import bot from '../src/bot';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
 	if (req.method === 'POST') {
