@@ -13,7 +13,8 @@ export const channelCommand = async (ctx: Context) => {
 			parse_mode: 'MarkdownV2',
 			reply_markup: {
 				inline_keyboard: [
-					[{ text: "Вернуться назад", callback_data: 'back' }]
+					[{ text: 'Перейти в канал ↗️', url: `${env.CHANNEL_LINK}` }],
+					[{ text: "Вернуться ↩️", callback_data: 'back' }]
 				]
 			}
 		}

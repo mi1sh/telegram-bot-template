@@ -13,7 +13,8 @@ export const playlistCommand = async (ctx: Context) => {
 			parse_mode: 'MarkdownV2',
 			reply_markup: {
 				inline_keyboard: [
-					[{ text: "Вернуться назад", callback_data: 'back' }]
+					[{ text: 'Послушать плейлист 🎧', url: `${env.SPOTIFY_PLAYLIST_LINK}` }],
+					[{ text: "Вернуться ↩️", callback_data: 'back' }]
 				]
 			}
 		}

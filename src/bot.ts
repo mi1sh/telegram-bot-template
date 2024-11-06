@@ -14,10 +14,8 @@ dotenv.config();
 const bot = new Telegraf(process.env.BOT_TOKEN as string);
 const CHAT_ID = process.env.CHAT_ID as string;
 
-// Словарь для хранения состояния пользователей
 const userStates: { [key: number]: string | undefined } = {};
 
-// Команды и их обработчики
 const commands = [
 	{ command: 'start', handler: startCommand },
 	{ command: 'socials', handler: socialsCommand },
@@ -30,14 +28,13 @@ const commands = [
 
 const mainMenuKeyboard = () => {
 	return Markup.keyboard([
-		[{ text: '📋Показать меню' }],  // Кнопка, которая отправляет команду /start
+		[{ text: 'Показать меню 📔' }],
 	])
 		.resize()
 		.oneTime(false);
 }
 mainMenuKeyboard();
 
-// Функция для регистрации команд и действий
 const registerCommandsAndActions = (bot: Telegraf<Context>) => {
 	commands.forEach(({ command, handler }) => {
 		bot.command(command, async (ctx) => {
@@ -52,23 +49,20 @@ const registerCommandsAndActions = (bot: Telegraf<Context>) => {
 	});
 };
 
-// Вызов функции для регистрации команд и действий
 registerCommandsAndActions(bot);
 
-// Кнопка "Назад" возвращает в главное меню
 bot.action('back', async (ctx) => {
-	userStates[ctx.from.id] = undefined; // Сбрасываем состояние
+	userStates[ctx.from.id] = undefined;
 	await startCommand(ctx);
 });
 
 bot.hears('Показать меню', async (ctx: Context) => {
 	await startCommand(ctx);
 	if (ctx.from) {
-		userStates[ctx.from.id] = undefined; // Сбрасываем состояние
+		userStates[ctx.from.id] = undefined;
 	}
 });
 
-// Обработка сообщений пользователя
 bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 	if (!ctx.from) {
 		return;
@@ -77,14 +71,11 @@ bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 
 	if (userState === 'suggestion') {
 		try {
-			// Перенаправляем сообщение администратору
 			await ctx.forwardMessage(CHAT_ID);
+			await ctx.telegram.sendMessage(CHAT_ID, "Ты получил новое сообщение в предложку ⤴️", {reply_markup: {inline_keyboard: [[{text: 'Вернуться ↩️', callback_data: 'back'}]]}});
 			await ctx.reply('Ваше сообщение отправлено!');
-
-			// Возвращаем пользователя в главное меню
-			await startCommand(ctx);
 			if (ctx.from) {
-				userStates[ctx.from.id] = undefined; // Сбрасываем состояние
+				userStates[ctx.from.id] = undefined;
 			}
 		} catch (error) {
 			await ctx.reply('Произошла ошибка. Попробуйте позже.');

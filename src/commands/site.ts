@@ -1,16 +1,27 @@
-import { Context, Markup } from 'telegraf';
+import { Context } from 'telegraf';
 import * as dotenv from 'dotenv';
+import {siteMessage} from '../messages/siteMessage';
 
-export const siteCommand = (ctx: Context) => {
+export const siteCommand = async (ctx: Context) => {
 	dotenv.config();
 
 	const env = process.env;
 
-	return ctx.reply(
-		'Мой сайт:',
-		Markup.inlineKeyboard([
-			[Markup.button.url('Сайт', `${env.SITE_LINK}`)],
-			[Markup.button.callback('Назад', 'back')],
-		])
+	await ctx.replyWithPhoto(
+		{ url: `${env.PIC_SITE}` },
+		{
+			caption: siteMessage,
+			parse_mode: 'MarkdownV2',
+			reply_markup: {
+				inline_keyboard: [
+					[
+						{ text: "Перейти на сайт ↗️", url: `${env.SITE_LINK}` }
+					],
+					[
+						{ text: "Вернуться ↩️", callback_data: 'back' }
+					]
+				],
+			}
+		}
 	);
 };

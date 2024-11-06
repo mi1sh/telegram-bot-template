@@ -9,5 +9,5 @@ export const aboutMessage = `*Этот бот \\- мой личный небол
 	`_\\(Не переживайте, это не так сложно, как может показаться на первый взгляд ☝️🤓\\)_ \n\n\n` +
 	`\\- *Разработчик — [mi1sh](${env.TELEGRAM_LINK})*\n` +
 	`\\- *Стек — [Typescript](https://www.typescriptlang.org/), [Node\\.js](https://nodejs.org/en), [Telegraf\\.js](https://telegraf.js.org/), [Telegram Bot API](https://core.telegram.org/bots/api)*\n` +
-	`\\- *Версия — 1\\.0\\.0*`;
+	`\\- *Версия — 1\\.1*`;
 
