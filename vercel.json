@@ -5,6 +5,22 @@
 	],
 	"env": {
 		"BOT_TOKEN": "@bot_token",
-		"CHAT_ID": "@chat_id"
+		"CHAT_ID": "@chat_id",
+		"CHANNEL_LINK": "@channel_link",
+
+		"SPOTIFY_PLAYLIST_LINK": "@spotify_playlist_link",
+		"GITHUB_REPO": "@github_repo",
+		"SITE_LINK": "@site_link",
+
+		"PIC_PLAYLIST": "@pic_playlist",
+		"PIC_CHANNEL": "@pic_channel",
+		"PIC_SITE": "@pic_site",
+
+		"TELEGRAM_LINK": "@telegram_link",
+		"INSTAGRAM_LINK": "@instagram_link",
+		"SPOTIFY_LINK": "@spotify_link",
+		"TIKTOK_LINK": "@tiktok_link",
+		"GITHUB_LINK": "@github_link",
+		"STEAM_LINK": "@steam_link",
 	}
 }
