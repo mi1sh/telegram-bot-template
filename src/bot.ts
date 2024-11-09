@@ -16,6 +16,7 @@ const CHAT_ID = process.env.CHAT_ID as string;
 
 const userStates: { [key: number]: string | undefined } = {};
 
+//? U can add any of your new commands in this list
 const commands = [
 	{ command: 'start', handler: startCommand },
 	{ command: 'socials', handler: socialsCommand },
@@ -90,6 +91,7 @@ bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
 	}
 });
 
-bot.telegram.setWebhook('https://poplakat-bot.vercel.app/api/webhook');
+//? Replace my webhook link with yours
+bot.telegram.setWebhook('https://poplakat-bot.fly.dev/webhook');
 
 export default bot;

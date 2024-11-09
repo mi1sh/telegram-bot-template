@@ -1,4 +1,4 @@
-import { Context, Markup } from 'telegraf';
+import { Context } from 'telegraf';
 import {aboutMessage} from '../messages/aboutMessage';
 import * as dotenv from 'dotenv';
 
