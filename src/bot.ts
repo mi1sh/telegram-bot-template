@@ -69,7 +69,7 @@ bot.action('back', async (ctx) => {
 	await startCommand(ctx);
 });
 
-bot.on(['text', 'photo', 'audio'], async (ctx: Context) => {
+bot.on('message', async (ctx: Context) => {
 	if (!ctx.from) {
 		return;
 	}
