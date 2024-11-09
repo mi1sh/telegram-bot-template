@@ -4,7 +4,7 @@ name: Fly Deploy
 on:
   push:
     branches:
-      - for_deployment
+      - for_deployment    # replace with your branch name
 jobs:
   deploy:
     name: Deploy app

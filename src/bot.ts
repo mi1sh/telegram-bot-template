@@ -11,9 +11,11 @@ import {playlistCommand} from './commands/playlist';
 
 dotenv.config();
 
+//? Creating a new bot using token from BotFather
 const bot = new Telegraf(process.env.BOT_TOKEN as string);
 const CHAT_ID = process.env.CHAT_ID as string;
 
+//? This state using for "suggestion" flag:
 const userStates: { [key: number]: string | undefined } = {};
 
 //? U can add any of your new commands in this list
@@ -27,6 +29,7 @@ const commands = [
 	{ command: 'playlist', handler: playlistCommand },
 ];
 
+//? Create a button on the bottom of user viewport:
 const mainMenuKeyboard = () => {
 	console.log('show menu')
 	return Markup.keyboard([
@@ -48,6 +51,7 @@ bot.hears('Показать меню 📔', async (ctx) => {
 	}
 });
 
+//? Register all actions and commands using our utils
 const registerCommandsAndActions = (bot: Telegraf<Context>) => {
 	commands.forEach(({ command, handler }) => {
 		bot.command(command, async (ctx) => {
@@ -64,11 +68,13 @@ const registerCommandsAndActions = (bot: Telegraf<Context>) => {
 
 registerCommandsAndActions(bot);
 
+//? This is the handler for all "Back" buttons:
 bot.action('back', async (ctx) => {
 	userStates[ctx.from.id] = undefined;
 	await startCommand(ctx);
 });
 
+//? This message handler support all Telegram message types:
 bot.on('message', async (ctx: Context) => {
 	if (!ctx.from) {
 		return;
