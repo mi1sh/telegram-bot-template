@@ -97,7 +97,5 @@ bot.on('message', async (ctx: Context) => {
 	}
 });
 
-//? Replace my webhook link with yours
-bot.telegram.setWebhook('https://poplakat-bot.fly.dev/webhook');
-
-export default bot;
+bot.launch()
+console.log('Bot is running');
